@@ -1,0 +1,623 @@
+body {
+  background-color: #fafafa;
+  padding-top: 70px;
+}
+
+.text-danger {
+  color: red;
+}
+
+.d-none {
+  display: none;
+}
+
+#cartList {
+  position: absolute;
+  top: 50px;
+  right: 20px;
+  width: 300px;
+  background-color: white;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  padding: 10px;
+  z-index: 1000;
+  display: none;
+  /* Tampilkan ini hanya saat tombol keranjang di klik */
+}
+
+button.btn-primary {
+  background-color: #ffdb00;
+  /* Warna tombol */
+  border-color: #ffdb00;
+  /* Warna batas tombol */
+  margin-bottom: 20px;
+}
+
+@media (max-width: auto) {
+  body {
+    padding-top: 50px;
+    /* Sesuaikan dengan tinggi navbar pada layar kecil */
+  }
+}
+
+/* Gaya untuk Navbar */
+
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1021;
+  background: linear-gradient(
+      rgba(255, 255, 255, 0.5),
+      rgba(255, 255, 255, 0.5)
+    ),
+    rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px); /* Efek blur */
+  -webkit-backdrop-filter: blur(10px); /* Dukungan untuk Safari */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Tambahan bayangan agar lebih keren */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 0.5rem 1rem;
+  /* Tambahkan sedikit padding */
+}
+
+/* Gaya untuk Logo */
+
+.navbar-brand {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: rgb(240, 136, 0);
+  transition: color 0.3s ease;
+}
+
+.navbar-brand:hover {
+  color: #ffd700;
+}
+
+/* Gaya untuk Link Navbar */
+
+.navbar-nav .nav-link {
+  color: rgb(240, 136, 0);
+  font-size: 1rem;
+  margin-right: 1rem;
+  transition: color 0.3s ease, transform 0.2s ease;
+  position: relative;
+}
+
+/* Efek Hover pada Link */
+
+.navbar-nav .nav-link:hover {
+  color: #ffd700;
+  transform: scale(1.1);
+}
+
+/* Garis Bawah Animasi Hover */
+
+.navbar-nav .nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #ffd700;
+  transition: width 0.3s;
+}
+
+.navbar-nav .nav-link:hover::after {
+  width: 100%;
+}
+
+/* Tombol Toggler untuk Responsif */
+
+.navbar-toggler {
+  border: none;
+  color: white;
+  outline: none;
+}
+
+.navbar-toggler-icon {
+  background-color: white;
+  border-radius: 4px;
+  padding: 4px;
+}
+
+.btn-keranjang {
+  background-color: #ff5e00;
+  border: 1;
+  border-color: #ff7829;
+  color: black;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-keranjang:hover {
+  background-color: #ffe033;
+  transform: scale(1.05);
+}
+
+/* Tombol Login dan Sign Up */
+
+.btn-login,
+.btn-signup {
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 0.5rem 1rem;
+  border-radius: 25px;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.btn-login {
+  color: #f57224;
+  background-color: white;
+  border: 2px solid #f57224;
+}
+
+.btn-login:hover {
+  background-color: #ffd700;
+  color: #ffffff;
+  transform: scale(1.05);
+}
+
+.btn-signup {
+  color: white;
+  background-color: #ffd700;
+  border: 2px solid #ffd700;
+}
+
+.btn-signup:hover {
+  background-color: white;
+  color: #f57224;
+  transform: scale(1.05);
+}
+
+/* Media Query untuk Tampilan Responsif */
+
+@media (max-width: 768px) {
+  .navbar-nav {
+    flex-direction: column;
+    text-align: center;
+  }
+  .navbar-nav .nav-link {
+    margin-right: 0;
+    padding: 0.5rem 1rem;
+  }
+  .btn-login,
+  .btn-signup {
+    width: 100%;
+    /* Tombol full-width di layar kecil */
+    margin-top: 0.5rem;
+  }
+  .navbar-collapse {
+    text-align: center;
+  }
+}
+
+/* batasan */
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes bounceIn {
+  0% {
+    transform: scale(0.9);
+  }
+  60% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Styling banner */
+
+.banner-image {
+  object-fit: cover;
+  height: 60vh;
+}
+
+.sticky-header {
+  color: #f57224;
+  font-family: "Times New Roman", Times, serif;
+  position: sticky;
+  top: 60px;
+  /* Jarak dari atas, disesuaikan dengan tinggi navbar */
+  z-index: 1020;
+  /* Pastikan tetap di atas konten lain, lebih rendah dari navbar */
+  padding: 10px;
+  /* Tambahan padding jika diperlukan */
+  box-shadow: 0 1px #f57224;
+  /* Efek bayangan untuk memberikan kedalaman */
+}
+
+.underline {
+  height: 2px;
+  /* Tinggi garis */
+  width: 100%;
+  /* Lebar penuh agar responsif */
+  max-width: 300px;
+  /* Atur lebar maksimum jika diperlukan */
+  margin: 10px auto;
+  /* Mengatur margin untuk center */
+  transition: width 0.3s;
+  /* Animasi lebar */
+  z-index: 1020;
+  /* Agar garis berada di atas elemen lain */
+}
+
+.card {
+  position: relative;
+  overflow: hidden;
+  border: 0;
+  /* box-shadow: 0 0 8px rgba(0, 0, 0, 0.2); */
+  /* Shadow replacing border */
+  padding-bottom: 3px;
+  /* Extra space for the Buy Now button */
+}
+
+.kategori .box .col {
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+  /* Shadow replacing border for category boxes */
+}
+
+/* Hover effect for category boxes without border */
+
+.box > .row > .col:hover {
+  cursor: pointer;
+  background-color: #d3d3d33b;
+}
+
+/* Product image styling */
+
+.card-img-top {
+  height: 200px;
+  object-fit: cover;
+}
+
+/* Button styling */
+
+.btn-cart {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  margin-left: 100px;
+}
+
+/* Gaya Umum untuk Tombol */
+
+/* Efek Animasi */
+
+@keyframes button-pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.btn-login,
+.btn-signup {
+  animation: button-pulse 2s infinite;
+  /* Animasi pulse */
+}
+
+/* Shopee-style button styling */
+
+.btn-success {
+  background-color: #f57224;
+  border: none;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-success:hover {
+  background-color: #f88c3c;
+  transform: scale(1.05);
+}
+
+.btn-primary {
+  background-color: #ffdb00;
+  border: none;
+  color: black;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  /* Shadow effect for button */
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-primary:hover {
+  background-color: #ffe033;
+  transform: scale(1.05);
+}
+
+.btn-cart i {
+  font-size: 1.2rem;
+}
+
+.d-flex {
+  display: flex;
+  align-items: center;
+  /* Menjaga agar elemen berada sejajar secara vertikal */
+}
+
+.form-control {
+  margin-right: 10px;
+  /* Menambah jarak antara input dan tombol keranjang */
+  height: 38px;
+  /* Menyesuaikan tinggi input agar sejajar dengan tombol */
+}
+
+/* Atur ukuran tombol keranjang agar konsisten dengan input */
+
+.btn-cart {
+  height: 38px;
+  background-color: #d8a06b;
+  /* Pastikan tinggi tombol keranjang sama dengan input */
+}
+
+/* Banner image styling */
+
+.banner-image {
+  height: 200px;
+  max-height: 300px;
+  object-fit: cover;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  /* Shadow for banner */
+  transition: transform 0.3s ease;
+}
+
+.banner-image:hover {
+  transform: scale(1.02);
+}
+
+/* Text truncation */
+
+.card-text {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+
+/* Service styling */
+
+.service {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+}
+
+.icon {
+  color: #007bff;
+}
+
+/* Card shadow for service boxes */
+
+/* .card.shadow {
+    box-shadow: 2px 4px 5px 0px rgba(56, 56, 56, 0.5);
+    -webkit-box-shadow: 2px 4px 5px 0px rgba(56, 56, 56, 0.5);
+    -moz-box-shadow: 2px 4px 5px 0px rgba(56, 56, 56, 0.5);
+} */
+
+/* Responsive styling */
+
+@media (max-width: 768px) {
+  .kategori .col {
+    width: 50%;
+    padding: 0.5rem;
+  }
+  .row.align-items-start .col-2 {
+    flex: 1 0 100%;
+    max-width: 100%;
+    margin-bottom: 1rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .row.align-items-start .col-2 {
+    flex: 1 0 50%;
+    max-width: 50%;
+  }
+}
+
+.banner-wrapper {
+  height: 300px;
+  max-height: 400px;
+}
+
+.banner-image {
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.banner-wrapper:hover .banner-image {
+  transform: scale(1.05);
+}
+
+/* Styling untuk overlay gelap */
+
+.overlay {
+  z-index: 1;
+}
+
+/* Styling untuk konten teks */
+
+header .container {
+  z-index: 2;
+}
+
+/* Responsivitas untuk perangkat kecil */
+
+@media (max-width: 768px) {
+  .banner-wrapper {
+    height: 200px;
+  }
+  header .container {
+    padding: 1rem;
+  }
+  .display-5 {
+    font-size: 1.8rem;
+  }
+  .lead {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .banner-wrapper {
+    height: 180px;
+  }
+  .display-5 {
+    font-size: 1.5rem;
+  }
+  .lead {
+    font-size: 0.9rem;
+  }
+}
+
+.search-bar input[type="text"] {
+  border-radius: 20px;
+  padding: 0.5rem 1rem;
+  margin-bottom: 20px;
+}
+
+.search-bar button {
+  border-radius: 20px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+/* Styling untuk Card Produk */
+
+.card {
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.card .card-title {
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.card-title {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  -webkit-line-clamp: 1;
+  /* Batasi hingga 2 baris */
+  line-clamp: 2;
+  /* Untuk dukungan di luar Webkit */
+  text-overflow: ellipsis;
+  /* Menambahkan elipsis (...) */
+}
+
+/* Responsif untuk Perangkat Kecil */
+
+@media (max-width: 768px) {
+  .search-bar {
+    flex-direction: column;
+    width: 100%;
+  }
+  .search-bar input[type="text"],
+  .search-bar button {
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+}
+
+/* Footer styling */
+
+footer {
+  background-color: #f8f8f8;
+  /* Warna latar belakang footer */
+  padding: 1.5rem 0;
+  /* Padding atas dan bawah */
+  font-size: 10px;
+  /* Ukuran font */
+  color: #292929;
+  /* Warna teks */
+}
+
+footer p {
+  margin: 0;
+  /* Menghilangkan margin untuk paragraf */
+}
+
+footer h5 {
+  font-weight: bold;
+  /* Bold untuk judul di footer */
+  font-size: 15px;
+}
+
+footer .container {
+  display: flex;
+  /* Menggunakan flexbox untuk mengatur kolom */
+  flex-wrap: wrap;
+  /* Mengizinkan kolom untuk membungkus */
+  justify-content: space-between;
+  /* Menjaga jarak antar kolom */
+}
+
+footer .col-md-3,
+footer .col-md-2 {
+  flex: 1;
+  /* Setiap kolom akan mengambil ruang yang sama */
+  min-width: 200px;
+  /* Minimal lebar kolom untuk menjaga tata letak */
+  margin: 0 10px;
+  /* Margin horizontal antar kolom */
+}
+
+.payment-img {
+  width: 100px; /* Atur lebar gambar */
+  height: auto; /* Menjaga proporsi gambar */
+  display: block; /* Mengatur gambar sebagai blok */
+  margin: 5px auto;
+  
+}
+
+footer .list-unstyled {
+  padding: 0;
+  /* Menghilangkan padding */
+  margin: 0;
+  /* Menghilangkan margin */
+  list-style: none;
+  /* Menghilangkan bullet point */
+}
+
+footer .list-unstyled li {
+  margin-bottom: 10px;
+  /* Spasi antar item di list */
+}
+
+@media (max-width: 768px) {
+  footer .container {
+    flex-direction: column;
+    /* Menumpuk konten pada perangkat kecil */
+    text-align: center;
+    /* Meratakan teks di tengah */
+  }
+  footer .col-md-3,
+  footer .col-md-2 {
+    margin-bottom: 1.5rem;
+    /* Spasi antar kolom */
+    min-width: 100%;
+    /* Kolom penuh pada perangkat kecil */
+  }
+}
